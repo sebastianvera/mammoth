@@ -2,6 +2,7 @@ Mammoth
 =======
 
 Mammoth allows us to control Rdio's native application from the terminal, on any computer in the LAN.
+This **only works** on **OS X** systems, is tested on version **10.8.3**.
 
 ## What do we need?
 
@@ -118,6 +119,8 @@ And restart your ```web.rb``` server.
 ## TODO
 
 * Make an easy way to set server ip address in the bash script.
+* Windows compatible.
+* Linux compatible.
 
 ## Author
 
