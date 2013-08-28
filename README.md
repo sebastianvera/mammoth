@@ -73,7 +73,7 @@ artist: Baz
 name  : foo
 artist: Bar
 
-$ play "Song name" -p 2 # Play the song with id: 2
+$ play "foo ba" -p 2 # Play the song with id: 2
 Now playing: foo - Baz
 
 ```
