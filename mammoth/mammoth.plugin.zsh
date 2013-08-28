@@ -1,33 +1,33 @@
-rdio_server_ip="127.0.0.1"
+rdio_server_ip="127.0.0.1:4567"
 
 play() {
    if [ "$1" = "random" ]; then
-      if ! curl -XPOST "http://$rdio_server_ip:4567/random" 2>/dev/null ; then
+      if ! curl -XPOST "http://$rdio_server_ip/random" 2>/dev/null ; then
         echo "Sinatra app is off"
       fi
    elif [[ -n $1 ]]; then
       search "$@"
-   elif ! curl -XPOST "http://$rdio_server_ip:4567/play" 2>/dev/null ; then
+   elif ! curl -XPOST "http://$rdio_server_ip/play" 2>/dev/null ; then
       echo "Sinatra app is off"
    fi
 }
 pause() {
-   if ! curl -XPOST "http://$rdio_server_ip:4567/pause" 2>/dev/null ; then
+   if ! curl -XPOST "http://$rdio_server_ip/pause" 2>/dev/null ; then
       echo "Sinatra app is off"
    fi
 }
 next() {
-   if ! curl -XPOST "http://$rdio_server_ip:4567/next" 2>/dev/null ; then
+   if ! curl -XPOST "http://$rdio_server_ip/next" 2>/dev/null ; then
       echo "Sinatra app is off"
    fi
 }
 previous() {
-   if ! curl -XPOST "http://$rdio_server_ip:4567/previous" 2>/dev/null ; then
+   if ! curl -XPOST "http://$rdio_server_ip/previous" 2>/dev/null ; then
       echo "Sinatra app is off"
    fi
 }
 song() {
-   if ! curl -XPOST "http://$rdio_server_ip:4567/song" 2>/dev/null ; then
+   if ! curl -XPOST "http://$rdio_server_ip/song" 2>/dev/null ; then
       echo "Sinatra app is off"
    fi
 }
@@ -43,7 +43,7 @@ search() {
                 * ) echo 'Use search [-s | --song] [-a | --artist] [-c] args...';;
             esac
          fi
-         if ! curl -XPOST "$ip:4567/search" -d "song="  -d "artist=$text" -d "play=$play" ; then
+         if ! curl -XPOST "http://$rdio_server_ip/search" -d "song="  -d "artist=$text" -d "play=$play" ; then
             echo "Sinatra app is off"
          fi
       else
@@ -65,7 +65,7 @@ search() {
          esac
          shift
          done
-         if ! curl -XPOST "$ip:4567/search" -d "song=$song"  -d "artist=$artist" -d "play=$play"; then
+         if ! curl -XPOST "http://$rdio_server_ip/search" -d "song=$song"  -d "artist=$artist" -d "play=$play"; then
             echo "Sinatra app is off"
          fi
    fi
